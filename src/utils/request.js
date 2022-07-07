@@ -1,5 +1,6 @@
 // // 导出一个axios的实例  而且这个实例要有请求拦截器 响应拦截器
 import axios from 'axios'
+import store from '@/store'
 import { Message } from 'element-ui'
 const service = axios.create({
   // 如果执行 npm run dev  值为 /api 正确  /api 这个代理只是给开发环境配置的代理
@@ -7,7 +8,18 @@ const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // 设置axios请求的基础的基础地址
   timeout: 5000 // 定义5秒超时
 }) // 创建一个axios的实例
-service.interceptors.request.use() // 请求拦截器
+service.interceptors.request.use(
+  config => {
+    // 在这个位置需要统一的去注入token
+    if (store.getters.token) {
+      // 如果token存在 注入token
+      config.headers['Authorization'] = `Bearer ${store.getters.token}`
+    }
+    return config// 必须返回配置，否则请求出错
+  }, error => {
+    return Promise.reject(error)
+  }
+) // 请求拦截器
 service.interceptors.response.use(
   response => {
     // axios默认加了一层data
