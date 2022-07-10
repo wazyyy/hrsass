@@ -1,4 +1,4 @@
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getToken, setToken, removeToken, setTimeStamp } from '@/utils/auth'
 import { login, getUserInfo, getUserDetailById } from '@/api/user'
 // 状态
 const state = {
@@ -30,6 +30,7 @@ const mutations = {
 // 执行异步
 const actions = {
   // 定义login action  也需要参数 调用action时 传递过来的参数
+  // async 标记的函数其实就是一个异步函数 -> 本质是还是 一个promise
   async login (context, data) {
     // 经过响应拦截器的处理之后 这里的result实际上就是 token
     const result = await login(data) // 实际上就是一个promise  result就是执行的结果
@@ -39,6 +40,8 @@ const actions = {
     // actions 修改state 必须通过mutations
     // context.commit('setToken', result.data.data)
     context.commit('setToken', result)
+    // 写入时间戳
+    setTimeStamp()// 将当前的最新时间写入缓存
   },
   // 获取用户资料action
   async getUserInfo (context) {
