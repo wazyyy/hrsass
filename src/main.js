@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Component from '@/components'
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
@@ -34,8 +35,14 @@ Object.keys(directives).forEach(key => {
  * Currently MockJs will be used in the production environment,
  * please remove it before going online ! ! !
  */
-
+import * as filters from '@/filters'// 引入工具类
+//  注册全局过滤器
+Object.keys(filters).forEach(key => {
+  // 注册过滤器
+  Vue.filter(key, filters[key])
+})
 // set ElementUI lang to EN
+Vue.use(Component)
 Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)

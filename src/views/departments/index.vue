@@ -1,5 +1,8 @@
 <template>
-  <div class="dashboard-container">
+  <div
+    v-loading="loading"
+    class="dashboard-container"
+  >
     <div class="app-container">
       <!-- 实现页面的基本布局 -->
       <el-card class="tree-card">
@@ -44,10 +47,12 @@ import { getDepartments } from '@/api/departments'
 import { tranListToTreeData } from '@/utils'
 import addDept from './components/add-dept.vue'
 export default {
+
   components: { TreeTools, addDept },
 
   data () {
     return {
+      // loading: false,
       showDialog: false, // 不显示弹层
       node: null, // 记录当前的node节点
       // 新增company属性
@@ -63,9 +68,11 @@ export default {
   },
   methods: {
     async getDepartments () {
+      this.loading = true
       const result = await getDepartments()
       this.company = { name: result.companyName, manager: '负责人', id: '' }
       this.departs = tranListToTreeData(result.depts, '') // 需要将其转换成树形结构
+      this.loading = false
       console.log(result)
     },
     addDepts (node) {
