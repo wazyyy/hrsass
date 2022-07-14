@@ -184,7 +184,7 @@ export default {
         // 告诉父组件更新数据
         // this.$parent 可以直接调用到父组件的实例 实际上就是父组件this
         // this.$emit
-        this.$parent.getEmployeeList()
+        this.$parent.getEmployeeList() && this.$parent.getEmployeeList()
         this.$parent.showDialog = false
       } catch (error) {
         console.log(error)

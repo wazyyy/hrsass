@@ -11,6 +11,7 @@
       </template>
 
     </page-tools>
+    <UploadExcel />
   </div>
 </template>
 
