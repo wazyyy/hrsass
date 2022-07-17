@@ -94,6 +94,7 @@
           >
             <template slot-scope="{row}">
               <el-button
+                :disabled="!checkPermission('POINT-USER-UPDATE')"
                 type="text"
                 size="small"
                 @click="$router.push(`/employees/detail/${row.id}`)"
@@ -113,6 +114,7 @@
               <el-button
                 type="text"
                 size="small"
+                @click="editRole(row.id)"
               >角色</el-button>
               <el-button
                 type="text"
@@ -152,6 +154,12 @@
           <canvas ref="myCanvas" />
         </el-row>
       </el-dialog>
+      <!-- 放置分配角色弹层 -->
+      <assign-role
+        ref="assignRole"
+        :show-role-dialog.sync="showRoleDialog"
+        :user-id="userId"
+      />
     </div>
   </div>
 </template>
@@ -162,8 +170,9 @@ import EmployeeEnum from '@/api/constant/employees'// 引入员工枚举对象
 import addEmployee from './components/add-employee.vue'
 import { formatDate } from '@/filters'
 import QrCode from 'qrcode'
+import AssignRole from './components/assign-role.vue'
 export default {
-  components: { addEmployee },
+  components: { addEmployee, AssignRole },
   data () {
     return {
       loading: false, // 控制树的显示或者隐藏进度条
@@ -175,7 +184,9 @@ export default {
         total: 0// 总数
       },
       showDialog: false,
-      showCodeDialog: false
+      showCodeDialog: false,
+      showRoleDialog: false,
+      userId: null
     }
   },
   created () {
@@ -276,6 +287,12 @@ export default {
       } else {
         this.$message.console.warning('该用户还未上传头像')
       }
+    },
+    // 编辑角色
+    async editRole (id) {
+      this.userId = id // props传值 是异步的
+      await this.$refs.assignRole.getUserDetailById(id) // 父组件调用子组件方法
+      this.showRoleDialog = true
     }
   }
 }

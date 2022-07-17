@@ -16,6 +16,7 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 import * as directives from '@/directives'
+import checkPermission from '@/mixin/checkPermission'
 // {imagerror: {}, abc1: {}, ...}
 // 注册自定义指令
 // 遍历所有的导出的指令对象 完成自定义全局注册
@@ -46,7 +47,7 @@ Vue.use(Component)
 Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
-
+Vue.mixin(checkPermission)// 表示所有的组件都拥有了检查的方法
 Vue.config.productionTip = false
 
 new Vue({
