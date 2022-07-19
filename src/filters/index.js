@@ -6,7 +6,7 @@
  * @param {string} label
  * @return {string}
  */
-function pluralize(time, label) {
+function pluralize (time, label) {
   if (time === 1) {
     return time + label
   }
@@ -16,7 +16,7 @@ function pluralize(time, label) {
 /**
  * @param {number} time
  */
-export function timeAgo(time) {
+export function timeAgo (time) {
   const between = Date.now() / 1000 - Number(time)
   if (between < 3600) {
     return pluralize(~~(between / 60), ' minute')
@@ -33,7 +33,7 @@ export function timeAgo(time) {
  * @param {number} num
  * @param {number} digits
  */
-export function numberFormatter(num, digits) {
+export function numberFormatter (num, digits) {
   const si = [
     { value: 1E18, symbol: 'E' },
     { value: 1E15, symbol: 'P' },
@@ -54,7 +54,7 @@ export function numberFormatter(num, digits) {
  * 10000 => "10,000"
  * @param {number} num
  */
-export function toThousandFilter(num) {
+export function toThousandFilter (num) {
   return (+num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
 }
 
@@ -62,11 +62,11 @@ export function toThousandFilter(num) {
  * Upper case first char
  * @param {String} string
  */
-export function uppercaseFirst(string) {
+export function uppercaseFirst (string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-export function parseTime(time, cFormat) {
+export function parseTime (time, cFormat) {
   if (arguments.length === 0) {
     return null
   }
@@ -104,7 +104,7 @@ export function parseTime(time, cFormat) {
   return timeStr
 }
 
-export function formatTime(time, option) {
+export function formatTime (time, option) {
   time = +time * 1000
   const d = new Date(time)
   const now = Date.now()
@@ -137,7 +137,7 @@ export function formatTime(time, option) {
     )
   }
 }
-export function getNowFormatDate() {
+export function getNowFormatDate () {
   var date = new Date()
   var seperator1 = '-'
   var year = date.getFullYear()
@@ -153,7 +153,7 @@ export function getNowFormatDate() {
   return currentdate
 }
 /* 数字 格式化 */
-export function nFormatter(num, digits) {
+export function nFormatter (num, digits) {
   const si = [{
     value: 1e18,
     symbol: 'E'
@@ -191,19 +191,19 @@ export function nFormatter(num, digits) {
   return num.toString()
 }
 
-export function html2Text(val) {
+export function html2Text (val) {
   const div = document.createElement('div')
   div.innerHTML = val
   return div.textContent || div.innerText
 }
 
-export function toThousandslsFilter(num) {
+export function toThousandslsFilter (num) {
   return (+num || 0)
     .toString()
     .replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
 }
 // 验证手机号
-export function checkPhone(rule, value, callback) {
+export function checkPhone (rule, value, callback) {
   if (!value) {
     return callback(new Error('手机号不能为空'))
   } else {
@@ -215,7 +215,7 @@ export function checkPhone(rule, value, callback) {
     }
   }
 }
-export function checkPassword(rule, value, callback) {
+export function checkPassword (rule, value, callback) {
   if (!value) {
     return callback(new Error('密码不能为空'))
   } else if (value.length < 6) {
@@ -225,22 +225,22 @@ export function checkPassword(rule, value, callback) {
   }
 }
 // 手机号证验证
-export function checkTel(value, callback) {
+export function checkTel (value, callback) {
   var reg = /^1[3|4|5|7|8][0-9]\d{8}$/
   return reg.test(value)
 }
 // 身份证验证
-export function checkiDNumber(value, callback) {
+export function checkiDNumber (value, callback) {
   var reg = /\d{17}[\d|x]|\d{15}/
   return reg.test(value)
 }
 // 身份证验证
-export function checkEmails(value, callback) {
+export function checkEmails (value, callback) {
   var reg = /^[A-Za-zd]+([-_.][A-Za-zd]+)*@([A-Za-zd]+[-.])+[A-Za-zd]{2,5}$/
   return reg.test(value)
 }
 // 邮箱验证
-export function checkEmail(rule, value, callback) {
+export function checkEmail (rule, value, callback) {
   if (!value) {
     return callback(new Error('邮箱不能为空'))
   } else {
@@ -253,21 +253,21 @@ export function checkEmail(rule, value, callback) {
   }
 }
 // 英文验证
-export function checkCode(value, callback) {
+export function checkCode (value, callback) {
   var reg = /^[A-Za-z]+$/g
   return reg.test(value)
 }
 // qq验证
-export function checkQq(value, callback) {
+export function checkQq (value, callback) {
   var reg = /^[0-9]+$/g
   return reg.test(value)
 }
 // 银行卡号
-export function formatBankNo(BankNo, callback) {
+export function formatBankNo (BankNo, callback) {
   var strBin = '10,18,30,35,37,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,58,60,62,65,68,69,84,87,88,94,95,98,99'
   return strBin
 }
-export function getStrleng(str, max) {
+export function getStrleng (str, max) {
   var myLen = 0
   for (var i = 0; i < str.length && myLen <= max * 2; i++) {
     if (str.charCodeAt(i) > 0 && str.charCodeAt(i) < 128) {
@@ -277,7 +277,7 @@ export function getStrleng(str, max) {
   return myLen
 }
 // 上传图片格式控制
-export function updatedImg(file, obj, callback, func) {
+export function updatedImg (file, obj, callback, func) {
   if (file.size < 10100000) {
     var fileName = file.name
     var suffix = fileName
@@ -303,7 +303,7 @@ export function updatedImg(file, obj, callback, func) {
   }
 }
 // 上传文档格式控制
-export function updatedFile(file, obj, callback, func) {
+export function updatedFile (file, obj, callback, func) {
   if (file.size < 10100000) {
     var fileName = file.name
     var suffix = fileName
@@ -330,7 +330,7 @@ export function updatedFile(file, obj, callback, func) {
     return false
   }
 }
-export function importFile(file, obj, callback, func) {
+export function importFile (file, obj, callback, func) {
   if (file.size < 10100000) {
     var fileName = file.name
     var suffix = fileName
@@ -352,11 +352,11 @@ export function importFile(file, obj, callback, func) {
     return false
   }
 }
-export function minHeight(resfile) {
+export function minHeight (resfile) {
   return document.body.clientHeight - 180 + 'px'
 }
 
-export function formatDate(date, fmt = 'yyyy-MM-dd') {
+export function formatDate (date, fmt = 'yyyy-MM-dd') {
   if (!(date instanceof Array)) {
     date = new Date(date)
   }
@@ -379,10 +379,10 @@ export function formatDate(date, fmt = 'yyyy-MM-dd') {
   return fmt
 }
 
-function padLeftZero(str) {
+function padLeftZero (str) {
   return ('00' + str).substr(str.length)
 }
-export function getBlob(response) {
+export function getBlob (response) {
   const blob = new Blob([response.data], {
     type: 'application/vnd.ms-excel'
   })
@@ -394,6 +394,6 @@ export function getBlob(response) {
   link.click()
 }
 // 图片 blob 流转化为可用 src
-export function imgHandle(obj) {
+export function imgHandle (obj) {
   return window.URL.createObjectURL(obj)
 }

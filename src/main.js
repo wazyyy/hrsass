@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Component from '@/components'
-
+// import axios from 'axios'
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
 import ElementUI from 'element-ui'
@@ -17,6 +17,11 @@ import '@/icons' // icon
 import '@/permission' // permission control
 import * as directives from '@/directives'
 import checkPermission from '@/mixin/checkPermission'
+import i18n from '@/lang'
+// 设置element为当前的语言
+Vue.use(ElementUI, {
+  i18n: (key, value) => i18n.t(key, value)
+})
 // {imagerror: {}, abc1: {}, ...}
 // 注册自定义指令
 // 遍历所有的导出的指令对象 完成自定义全局注册
@@ -49,10 +54,14 @@ Vue.use(ElementUI, { locale })
 // Vue.use(ElementUI)
 Vue.mixin(checkPermission)// 表示所有的组件都拥有了检查的方法
 Vue.config.productionTip = false
-
+// const service = axios.create({
+//   baseURL: process.env_BASE_API,
+//   timeout: 50000
+// })
 new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   render: h => h(App)
 })

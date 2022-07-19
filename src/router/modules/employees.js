@@ -8,6 +8,7 @@ export default {
   // 配置二级路的路由表
   children: [{
     path: '', // 这里当二级路由的path什么都不写的时候 表示该路由为当前路由的默认子路由
+    name: 'employees',
     component: () => import('@/views/employees'),
     // 路由元信息  其实就是存储数据的对象 我们可以在这里放置一些信息
     meta: {

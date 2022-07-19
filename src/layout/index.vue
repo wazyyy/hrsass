@@ -12,6 +12,8 @@
     <div class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
+        <!-- 放置tagsview -->
+        <tags-view />
       </div>
       <app-main />
     </div>

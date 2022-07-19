@@ -12,6 +12,12 @@
     <!-- <breadcrumb class="breadcrumb-container" /> -->
 
     <div class="right-menu">
+      <!-- 放置切换多语言 -->
+      <lang class="right-menu-item" />
+      <!-- 放置更换主题插件 -->
+      <theme-picker class="right-menu-item" />
+      <!-- 放置全屏图标 -->
+      <screen-full class="right-menu-item" />
       <el-dropdown
         class="avatar-container"
         trigger="click"
@@ -95,22 +101,8 @@ export default {
   height: 50px;
   overflow: hidden;
   position: relative;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   background-image: -webkit-linear-gradient(left, #3d6df8, #5b8cff);
-
-  .hamburger-container {
-    line-height: 46px;
-    height: 100%;
-    float: left;
-    cursor: pointer;
-    transition: background 0.3s;
-    -webkit-tap-highlight-color: transparent;
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.025);
-    }
-  }
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   .app-breadcrumb {
     display: inline-block;
     font-size: 18px;
@@ -129,6 +121,19 @@ export default {
       margin-left: 15px;
     }
   }
+  .hamburger-container {
+    line-height: 46px;
+    height: 100%;
+    float: left;
+    cursor: pointer;
+    transition: background 0.3s;
+    -webkit-tap-highlight-color: transparent;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.025);
+    }
+  }
+
   .breadcrumb-container {
     float: left;
   }
@@ -141,28 +146,14 @@ export default {
     &:focus {
       outline: none;
     }
-    .user-avatar {
-      cursor: pointer;
-      width: 30px;
-      height: 30px;
-      border-radius: 15px;
-      vertical-align: middle;
-    }
-    .name {
-      color: #fff;
-      vertical-align: middle;
-      margin-left: 5px;
-    }
-    .user-dropdown {
-      color: #fff;
-    }
+
     .right-menu-item {
       display: inline-block;
       padding: 0 8px;
       height: 100%;
       font-size: 18px;
       color: #5a5e66;
-      vertical-align: text-bottom;
+      vertical-align: middle;
 
       &.hover-effect {
         cursor: pointer;
@@ -183,9 +174,18 @@ export default {
 
         .user-avatar {
           cursor: pointer;
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
+          width: 30px;
+          height: 30px;
+          border-radius: 15px;
+          vertical-align: middle;
+        }
+        .name {
+          color: #fff;
+          vertical-align: middle;
+          margin-left: 5px;
+        }
+        .user-dropdown {
+          color: #fff;
         }
 
         .el-icon-caret-bottom {
@@ -194,6 +194,7 @@ export default {
           right: -20px;
           top: 25px;
           font-size: 12px;
+          color: #fff;
         }
       }
     }

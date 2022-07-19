@@ -59,6 +59,8 @@ const actions = {
     context.commit('removeToken')// 不仅仅删除了vuex中的 还删除了缓存中的
     // 删除用户资料
     context.commit('removeUserInfo')// 删除用户信息
+    // 重置多页签
+    context.dispatch('tagsview/delAllviews', null, { root: true })
     // 重置路由
     resetRouter()
     // 还有一步  vuex中的数据是不是还在

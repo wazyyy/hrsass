@@ -9,6 +9,7 @@ import attendancesRouter from './modules/attendances'
 import salarysRouter from './modules/salarys'
 import settingRouter from './modules/setting'
 import socialRouter from './modules/social'
+import userRouter from './modules/user'
 Vue.use(Router)
 
 /* Layout */
@@ -57,7 +58,7 @@ export const constantRoutes = [
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
-      name: 'Dashboard',
+      name: 'dashboard',
       component: () => import('@/views/dashboard/index'),
       meta: { title: '首页', icon: 'dashboard' }
     }]
@@ -70,8 +71,8 @@ export const constantRoutes = [
       path: '',
       component: () => import('@/views/import')
     }]
-  }
-
+  },
+  userRouter
   // 404 page must be placed at the end !!!
 
 ]
@@ -85,9 +86,10 @@ export const asyncRoutes = [approvalsRouter,
   settingRouter,
   socialRouter]
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
+  base: '/hr/', // 配置项目的基础地址
   scrollBehavior: () => ({ y: 0 }), // 管理滚动行为 如果出现滚动 切换就让 让页面回到顶部
-  routes: [...constantRoutes]// 临时合并所有的路由
+  routes: [...constantRoutes]// 改成静态路由
 })
 
 const router = createRouter()
